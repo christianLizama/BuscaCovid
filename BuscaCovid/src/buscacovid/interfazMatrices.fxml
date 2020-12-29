@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="116.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="buscacovid.InterfazMatricesController">
+   <children>
+      <ImageView fx:id="fondo" fitHeight="423.0" fitWidth="251.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/Tabla1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="iniciarJuego" layoutX="91.0" layoutY="10.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="18.0" prefWidth="30.0" text="Button" />
+      <Button fx:id="reiniciarJuego" layoutX="131.0" layoutY="10.0" mnemonicParsing="false" onAction="#reiniciar" prefHeight="18.0" prefWidth="30.0" text="Button" />
+   </children>
+</AnchorPane>
