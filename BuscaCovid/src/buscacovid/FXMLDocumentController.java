@@ -35,23 +35,39 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button avanzado;
     
+    static int tamanioMatriz;
+
+    public static int getTamanioMatriz() {
+        return tamanioMatriz;
+    }
+
+    public static void setTamanioMatriz(int tamanioMatriz) {
+        FXMLDocumentController.tamanioMatriz = tamanioMatriz;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }    
 
     @FXML
     private void nivelPrincipiante(ActionEvent event) throws IOException {
+        setTamanioMatriz(9);
         cambioEscena("interfazMatrices.fxml");
         
     }
 
     @FXML
-    private void nivelIntermedio(ActionEvent event) {
+    private void nivelIntermedio(ActionEvent event) throws IOException {
+        setTamanioMatriz(16);
+        cambioEscena("interfazMatrices.fxml");
     }
 
     @FXML
-    private void nivelAvanzado(ActionEvent event) {
+    private void nivelAvanzado(ActionEvent event) throws IOException {
+        setTamanioMatriz(32);
+        cambioEscena("interfazMatrices.fxml");
     }
     
     public void cambioEscena(String nombreFxml) throws IOException{
