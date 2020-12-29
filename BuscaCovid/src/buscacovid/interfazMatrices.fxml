@@ -4,16 +4,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="116.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="buscacovid.InterfazMatricesController">
+<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="116.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscacovid.InterfazMatricesController">
    <children>
-      <ImageView fx:id="fondo" fitHeight="423.0" fitWidth="251.0" pickOnBounds="true">
+      <ImageView fx:id="fondo" fitHeight="800.0" fitWidth="500.0" pickOnBounds="true">
          <image>
             <Image url="@../Images/Tabla1.png" />
          </image>
       </ImageView>
-      <Button fx:id="iniciarJuego" layoutX="91.0" layoutY="10.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="18.0" prefWidth="30.0" text="Button" />
-      <Button fx:id="reiniciarJuego" layoutX="131.0" layoutY="10.0" mnemonicParsing="false" onAction="#reiniciar" prefHeight="18.0" prefWidth="30.0" text="Button" />
+      <Button fx:id="iniciarJuego" layoutX="185.0" layoutY="22.0" mnemonicParsing="false" onAction="#iniciar" opacity="0.0" prefHeight="46.0" prefWidth="47.0" text="Button" />
+      <Button fx:id="reiniciarJuego" layoutX="261.0" layoutY="21.0" mnemonicParsing="false" onAction="#reiniciar" opacity="0.0" prefHeight="46.0" prefWidth="53.0" text="Button" />
+      <Pane fx:id="contenedorTablero" layoutX="48.0" layoutY="193.0" prefHeight="462.0" prefWidth="404.0" />
    </children>
 </AnchorPane>
