@@ -5,13 +5,18 @@
  */
 package buscacovid;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -50,6 +55,23 @@ public class InterfazMatricesController implements Initializable {
                 for (int i = 0; i < tamannio; i++) {
                     for (int j = 0; j < tamannio; j++) {
                         Button casilla = new Button();
+                        
+                        //Si usamos los distintos click
+                        casilla.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                if (mouseEvent.isSecondaryButtonDown()){
+                                    
+                                    agregaBandera(casilla,30);
+                                    
+                                }
+                                else{
+                                    System.out.println("Se ha pulsado una casilla");
+                                }
+                            }
+                        });
+                        
+                        
                         casilla.setMinSize(casilla.USE_PREF_SIZE,casilla.USE_PREF_SIZE);
                         casilla.setPrefSize(45, 45);
                         tablero.add(casilla, i, j);
@@ -63,6 +85,19 @@ public class InterfazMatricesController implements Initializable {
                 for (int i = 0; i < tamannio; i++) {
                     for (int j = 0; j < tamannio; j++) {
                         Button casilla = new Button();
+                        //Si usamos los distintos click
+                        casilla.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                if (mouseEvent.isSecondaryButtonDown()){
+                                    
+                                    agregaBandera(casilla,20);
+                                }
+                                else{
+                                    System.out.println("Se ha pulsado una casilla");
+                                }
+                            }
+                        });
                         casilla.setMinSize(casilla.USE_PREF_SIZE,casilla.USE_PREF_SIZE);
                         casilla.setPrefSize(30, 30);
                         tablero.add(casilla, i, j);
@@ -101,6 +136,20 @@ public class InterfazMatricesController implements Initializable {
                 for (int i = 0; i < tamannio; i++) {
                     for (int j = 0; j < tamannio; j++) {
                         Button casilla = new Button();
+                        //Si usamos los distintos click
+                        casilla.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                if (mouseEvent.isSecondaryButtonDown()){
+                                    
+                                    agregaBandera(casilla, 16);
+                                    
+                                }
+                                else{
+                                    System.out.println("Se ha pulsado una casilla");
+                                }
+                            }
+                        });
                         casilla.setMinSize(casilla.USE_PREF_SIZE,casilla.USE_PREF_SIZE);
                         casilla.setPrefSize(25, 25);
                         tablero.add(casilla, i, j);
@@ -109,7 +158,20 @@ public class InterfazMatricesController implements Initializable {
                 break;
         }
     }
+    public void agregaBandera(Button casilla,int sizeFlag){
+        Image imagenBandera = new Image("Images/bandera.png",sizeFlag,sizeFlag,false,true);
+        ImageView iconoBandera = new ImageView(imagenBandera);
 
+        if(casilla.getGraphic()==null){
+            System.out.println("Se ha marcado un virus");
+            casilla.setGraphic(iconoBandera);
+        }
+        else{
+            System.out.println("Se ha desmarcado un virus");
+            casilla.setGraphic(null);
+        }
+        
+    }
     
     @FXML
     private void iniciar(ActionEvent event) {
