@@ -5,6 +5,7 @@
  */
 package buscacovid;
 
+import java.util.Scanner;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +18,25 @@ import javafx.stage.Stage;
  */
 public class BuscaCovid extends Application {
     
+    Scanner scanner = new Scanner(System.in);
+    int tablero [][] = new int[5][5];
+    
+    int intentos = 0;
+    int nVirus = 10;
+    
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
+        
+        //Inicializar el arreglo bidireccional del tablero
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++)
+                tablero[i][j] = 0;
+        }
         
         stage.setScene(scene);
         stage.show();
