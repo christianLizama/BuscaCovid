@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -35,13 +36,14 @@ public class InterfazMatricesController implements Initializable {
     private Button reiniciarJuego;
     @FXML
     private Pane contenedorTablero;
-
+    
+    GridPane tablero = new GridPane();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        GridPane tablero = new GridPane();
+        tablero.setVisible(false);
         crearMatrices(FXMLDocumentController.getTamanioMatriz(), tablero);
         
         contenedorTablero.getChildren().add(tablero);
@@ -176,11 +178,18 @@ public class InterfazMatricesController implements Initializable {
     @FXML
     private void iniciar(ActionEvent event) {
         System.out.println("jugar");
+        tablero.setVisible(true);
+        
     }
 
     @FXML
     private void reiniciar(ActionEvent event) {
         System.out.println("Reiniciar");
+        
+        for (Node boton : tablero.getChildren()) {
+            Button casilla = (Button) boton;
+            casilla.setGraphic(null);
+        }
     }
 
     public ImageView getFondo() {
