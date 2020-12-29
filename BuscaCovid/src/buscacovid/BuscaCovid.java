@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 public class BuscaCovid extends Application {
     
     Scanner scanner = new Scanner(System.in);
+    
+    //Declaración de variables para el tablero
+    int ancho = 5; //depende de la dificultad se debe hacer genérico
+    int alto = 5;
     int tablero [][] = new int[5][5];
     
     int intentos = 0;
@@ -47,6 +51,26 @@ public class BuscaCovid extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    //Coloca el número de virus dependiendo del ancho y alto del tablero
+    public void generarVirus(int numeroVirus){
+        double randomX = 0;
+        double randomY = 0;
+        int condicion = 0;
+        
+        do{
+            randomX = Math.random()*ancho;
+            randomY = Math.random()*alto;
+            
+            if(randomY!=0 && randomX!=0 && randomY!=alto-1 && randomX!=ancho-1){               
+                //asignamos un numero para las bombas generadas en el tablero
+                tablero[(int)randomX][(int)randomY] = 9; 
+                condicion++;
+            }
+            
+            
+        }while(condicion<=ancho);
     }
     
 }
