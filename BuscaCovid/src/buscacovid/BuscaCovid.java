@@ -73,4 +73,35 @@ public class BuscaCovid extends Application {
         }while(condicion<=ancho);
     }
     
+    //Asigna un los números a cada botón dependiendo de los virus (algoritmo BuscaVirus)
+    public void comprobar(){
+        for(int i = 0; i < ancho; i++){
+            for(int j = 0; j < alto; j++){
+                int comprobarNumero = 0; //Número que se le asignará al boton
+                //Si encontramos un virus en el tablero
+                if(tablero[i-1][j-1] == 9)
+                    comprobarNumero++;
+                
+                if(tablero[i+1][j-1] == 9)
+                    comprobarNumero++;
+                
+                if(tablero[i][j+1] == 9)
+                    comprobarNumero++;
+                
+                if(tablero[i+1][j+1] == 9)
+                    comprobarNumero++;
+                
+                if(tablero[i-1][j+1] == 9)
+                    comprobarNumero++;
+                
+                if(tablero[i+1][j] == 9)
+                    comprobarNumero++;
+                
+                if(comprobarNumero!=0)
+                    tablero[i][j] = comprobarNumero;
+            }
+        }
+        
+    }
+    
 }
