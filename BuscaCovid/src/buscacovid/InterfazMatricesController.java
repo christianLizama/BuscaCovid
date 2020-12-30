@@ -13,6 +13,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -69,6 +71,9 @@ public class InterfazMatricesController implements Initializable {
                                 }
                                 else{
                                     System.out.println("Se ha pulsado una casilla");
+                                    System.out.println("Entro aca");
+                                    casilla.setDisable(true);
+//                                    descubrirEspacio(casilla, 30);
                                 }
                             }
                         });
@@ -97,6 +102,8 @@ public class InterfazMatricesController implements Initializable {
                                 }
                                 else{
                                     System.out.println("Se ha pulsado una casilla");
+                                    System.out.println("entro");
+//                                    casilla.setOpacity(0);
                                 }
                             }
                         });
@@ -149,6 +156,10 @@ public class InterfazMatricesController implements Initializable {
                                 }
                                 else{
                                     System.out.println("Se ha pulsado una casilla");
+                                    System.out.println("entro");
+//                                    casilla.setOpacity(0);
+                                    casilla.setGraphic(new ImageView(new Image("Images/Espacio.png",16,16,false,true)));
+                                    
                                 }
                             }
                         });
@@ -175,6 +186,41 @@ public class InterfazMatricesController implements Initializable {
         
     }
     
+    public void descubrirNumero(Button casilla,int sizeFlag){
+        Image imagenBandera = new Image("Images/Espacio.png",sizeFlag,sizeFlag,false,true);
+        ImageView iconoBandera = new ImageView(imagenBandera);
+
+        if(casilla.getGraphic()==null){
+            System.out.println("Se ha marcado un virus");
+            casilla.setGraphic(iconoBandera);
+        }
+        else{
+            System.out.println("Se ha desmarcado un virus");
+            casilla.setGraphic(null);
+        }
+        
+    }
+    
+    public void descubrirVirus(Button casilla,int sizeFlag){
+        Image imagenVirus = new Image("Images/Virus.png",sizeFlag,sizeFlag,false,true);
+        ImageView iconoVirus = new ImageView(imagenVirus);
+
+        if(casilla.getGraphic()==null){
+            System.out.println("Se ha encontrado un virus");
+            casilla.setGraphic(iconoVirus);
+            casilla.setDisable(true);
+            Alert a = new Alert(AlertType.NONE);
+            // action event 
+            EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() { 
+                public void handle(ActionEvent e){ 
+                    a.setAlertType(AlertType.ERROR); 
+                    a.show(); 
+                } 
+            }; 
+        }
+
+        
+    }
     @FXML
     private void iniciar(ActionEvent event) {
         System.out.println("jugar");
