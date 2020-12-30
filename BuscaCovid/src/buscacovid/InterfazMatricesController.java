@@ -7,6 +7,7 @@ package buscacovid;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,12 +41,20 @@ public class InterfazMatricesController implements Initializable {
     private Pane contenedorTablero;
     
     GridPane tablero = new GridPane();
+    
+    ArrayList<Virus> listaVirus= new ArrayList<Virus>();
+    boolean[ ][ ] verificador = new boolean[32][32];
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tablero.setVisible(false);
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 32; j++) {
+                verificador[i][j] = false;
+            }
+        }
         crearMatrices(FXMLDocumentController.getTamanioMatriz(), tablero);
         
         contenedorTablero.getChildren().add(tablero);
@@ -55,7 +64,7 @@ public class InterfazMatricesController implements Initializable {
         
         switch(tamannio){
             
-            case 9:
+            case 9: //8 virus
                 for (int i = 0; i < tamannio; i++) {
                     for (int j = 0; j < tamannio; j++) {
                         Button casilla = new Button();
@@ -84,10 +93,10 @@ public class InterfazMatricesController implements Initializable {
                         tablero.add(casilla, i, j);
                     }
                 }
-                
+                generarVirusAleatorio(8, tamannio);
                 break;
             
-            case 16:
+            case 16: // 20 virus
                 contenedorTablero.setLayoutX(10);
                 for (int i = 0; i < tamannio; i++) {
                     for (int j = 0; j < tamannio; j++) {
@@ -102,7 +111,7 @@ public class InterfazMatricesController implements Initializable {
                                 }
                                 else{
                                     System.out.println("Se ha pulsado una casilla");
-                                    System.out.println("entro");
+                                    casilla.setDisable(true);
 //                                    casilla.setOpacity(0);
                                 }
                             }
@@ -112,9 +121,9 @@ public class InterfazMatricesController implements Initializable {
                         tablero.add(casilla, i, j);
                     }
                 }
-                
+                generarVirusAleatorio(20, tamannio);
                 break;
-            case 32:
+            case 32: // 30 Virus
                 
                 contenedorTablero.setLayoutY(100);
                 
@@ -156,9 +165,8 @@ public class InterfazMatricesController implements Initializable {
                                 }
                                 else{
                                     System.out.println("Se ha pulsado una casilla");
-                                    System.out.println("entro");
 //                                    casilla.setOpacity(0);
-                                    casilla.setGraphic(new ImageView(new Image("Images/Espacio.png",16,16,false,true)));
+                                    casilla.setDisable(true);
                                     
                                 }
                             }
@@ -168,6 +176,7 @@ public class InterfazMatricesController implements Initializable {
                         tablero.add(casilla, i, j);
                     }
                 }
+                generarVirusAleatorio(30, tamannio);
                 break;
         }
     }
@@ -235,6 +244,7 @@ public class InterfazMatricesController implements Initializable {
         for (Node boton : tablero.getChildren()) {
             Button casilla = (Button) boton;
             casilla.setGraphic(null);
+            casilla.setDisable(false);
         }
     }
 
@@ -260,6 +270,36 @@ public class InterfazMatricesController implements Initializable {
 
     public void setReiniciarJuego(Button reiniciarJuego) {
         this.reiniciarJuego = reiniciarJuego;
+    }
+    
+    public ArrayList<Virus> generarVirusAleatorio(int cantidadVirus, int tamanioMatriz){
+        Virus v;
+        int numero, numero2;
+        for (int i = 0; i < cantidadVirus; i++) {
+            v = new Virus(i+1);
+            listaVirus.add(v);
+        }
+        for (int i = 0; i < listaVirus.size(); i++) {
+//            for (int j = 0; j < i; j++) {
+                numero = generarCoordenadaVirus(0, tamanioMatriz);
+                numero2 = generarCoordenadaVirus(0, tamanioMatriz);
+//                if (!verificador[numero][numero2]){
+//                    verificador[numero][numero2] = true;
+                    listaVirus.get(i).setI(numero);
+                    listaVirus.get(i).setJ(numero2);
+//                }
+//                else{
+                    
+//                }
+//            }
+                        
+        }
+    return listaVirus;
+    }
+    
+    public int generarCoordenadaVirus(int menor, int mayor){
+        int valorEntero = (int) Math.floor(Math.random()*(mayor-menor+1)+menor);
+        return valorEntero;
     }
     
 }
