@@ -12,23 +12,17 @@ import javafx.scene.image.Image;
  * @author Ryuk
  */
 public class Virus {
-    private Image image;
     private int i,j;
     private int index;
 
-    public Virus(Image image, int i, int j, int index) {
-        this.image = image;
+    public Virus(int i, int j, int index) {
         this.i = i;
         this.j = j;
         this.index = index;
     }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
+    
+    public Virus(int index) {
+        this.index = index;
     }
 
     public int getI() {
